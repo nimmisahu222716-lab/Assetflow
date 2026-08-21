@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const rawApiBase = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = rawApiBase.endsWith('/') ? rawApiBase.slice(0, -1) : rawApiBase;
 
 export const fetchAPI = async (endpoint, options = {}) => {
   const token = localStorage.getItem('assetflow_token');
@@ -9,7 +10,9 @@ export const fetchAPI = async (endpoint, options = {}) => {
     ...options.headers
   };
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
+  const formattedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+
+  const response = await fetch(`${API_BASE}${formattedEndpoint}`, {
     ...options,
     headers
   });
