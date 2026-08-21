@@ -1,5 +1,14 @@
-const rawApiBase = import.meta.env.VITE_API_URL || '/api';
-const API_BASE = rawApiBase.endsWith('/') ? rawApiBase.slice(0, -1) : rawApiBase;
+let rawApiBase = (import.meta.env.VITE_API_URL || '/api').trim();
+if (rawApiBase.endsWith('/')) {
+  rawApiBase = rawApiBase.slice(0, -1);
+}
+
+// Automatically append /api if pointing to a remote server root without /api suffix
+if (rawApiBase.startsWith('http') && !rawApiBase.endsWith('/api')) {
+  rawApiBase = `${rawApiBase}/api`;
+}
+
+const API_BASE = rawApiBase;
 
 export const fetchAPI = async (endpoint, options = {}) => {
   const token = localStorage.getItem('assetflow_token');
