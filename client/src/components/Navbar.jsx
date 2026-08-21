@@ -70,7 +70,7 @@ export const Navbar = () => {
           <Search size={16} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
-            placeholder="Search Tag, Serial..."
+            placeholder="Search..."
             className="input-field"
             style={{ paddingLeft: '2.2rem', paddingRight: '0.8rem', fontSize: '0.8rem', height: '36px', width: '100%' }}
             onKeyDown={(e) => {
