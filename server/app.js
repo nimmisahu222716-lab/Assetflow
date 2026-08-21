@@ -22,11 +22,25 @@ const auditLogRoutes = require('./routes/auditLogRoutes');
 
 const app = express();
 
-app.use(cors());
+// Explicit CORS Configuration for cross-domain Netlify -> Vercel requests
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 
 // Auto DB Connection & Auto Seed Middleware for serverless functions / Express
 app.use(async (req, res, next) => {
+  // Fast path for preflight OPTIONS requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+
   try {
     await connectDB();
     const User = require('./models/User');
