@@ -130,7 +130,10 @@ export const Sidebar = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: 'rgba(0, 0, 0, 0.04)',
+          background: 'var(--bg-sidebar)',
+          position: 'sticky',
+          bottom: 0,
+          zIndex: 10,
           flexShrink: 0
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', overflow: 'hidden' }}>
