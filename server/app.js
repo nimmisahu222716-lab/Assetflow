@@ -27,39 +27,46 @@ app.use(express.json());
 
 // Auto DB Connection & Auto Seed Middleware for serverless functions / Express
 app.use(async (req, res, next) => {
-  if (req.path.startsWith('/api')) {
-    try {
-      await connectDB();
-      const User = require('./models/User');
-      const userCount = await User.countDocuments();
-      if (userCount === 0) {
-        console.log('Database empty. Running seed setup...');
-        await seedDatabase();
-      }
-    } catch (err) {
-      console.error('DB Connection error in middleware:', err);
+  try {
+    await connectDB();
+    const User = require('./models/User');
+    const userCount = await User.countDocuments();
+    if (userCount === 0) {
+      console.log('Database empty. Running seed setup...');
+      await seedDatabase();
     }
+  } catch (err) {
+    console.error('DB Connection error in middleware:', err);
   }
   next();
 });
 
-// Routes Mount
-app.use('/api/auth', authRoutes);
-app.use('/api/departments', departmentRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/assets', assetRoutes);
-app.use('/api/allocations', allocationRoutes);
-app.use('/api/transfers', transferRoutes);
-app.use('/api/bookings', bookingRoutes);
-app.use('/api/maintenance', maintenanceRoutes);
-app.use('/api/audits', auditRoutes);
-app.use('/api/reports', reportRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/logs', auditLogRoutes);
+// Helper router mount function to handle both /api/path and /path in serverless environment
+const mountRoute = (path, router) => {
+  app.use(`/api${path}`, router);
+  app.use(path, router);
+};
 
-app.get('/api/health', (req, res) => {
+mountRoute('/auth', authRoutes);
+mountRoute('/departments', departmentRoutes);
+mountRoute('/categories', categoryRoutes);
+mountRoute('/users', userRoutes);
+mountRoute('/assets', assetRoutes);
+mountRoute('/allocations', allocationRoutes);
+mountRoute('/transfers', transferRoutes);
+mountRoute('/bookings', bookingRoutes);
+mountRoute('/maintenance', maintenanceRoutes);
+mountRoute('/audits', auditRoutes);
+mountRoute('/reports', reportRoutes);
+mountRoute('/notifications', notificationRoutes);
+mountRoute('/logs', auditLogRoutes);
+
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({ status: 'ok', system: 'AssetFlow ERP API', timestamp: new Date() });
+});
+
+app.get(['/api', '/'], (req, res) => {
+  res.json({ status: 'ok', system: 'AssetFlow ERP Backend API' });
 });
 
 // Error handling middleware
