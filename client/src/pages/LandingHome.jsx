@@ -102,26 +102,19 @@ export const LandingHome = () => {
           </nav>
         </div>
 
-        {/* RIGHT CORNER: Desktop Action Links & Dark/Light Mode */}
-        <div className="landing-actions-desktop">
-          {user ? (
-            <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ fontSize: '0.85rem', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
-              Launch ERP Dashboard <ArrowRight size={16} />
-            </button>
-          ) : (
-            <>
-              {/* 1. Sign In */}
-              <Link to="/login" className="glow-btn-secondary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
-                Sign In
-              </Link>
-              {/* 2. Employee Signup */}
-              <Link to="/signup" className="glow-btn-primary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
-                Employee Signup
-              </Link>
-            </>
-          )}
+        {/* RIGHT CORNER: Desktop Action Links (Sign In, Sign Up, Launch Dashboard) & Dark/Light Mode */}
+        <div className="landing-actions-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <Link to="/login" className="glow-btn-secondary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
+            Sign In
+          </Link>
+          <Link to="/signup" className="glow-btn-secondary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
+            Sign Up
+          </Link>
+          <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ fontSize: '0.85rem', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
+            Launch ERP Dashboard <ArrowRight size={16} />
+          </button>
 
-          {/* 3. Dark/Light Mode Button */}
+          {/* Dark/Light Mode Button */}
           <button
             onClick={toggleTheme}
             title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
@@ -191,35 +184,30 @@ export const LandingHome = () => {
             Enterprise Roles <ArrowRight size={16} color="var(--text-muted)" />
           </button>
 
-          <div className="landing-mobile-actions">
-            {user ? (
-              <button
-                onClick={() => { setMobileMenuOpen(false); navigate('/dashboard'); }}
-                className="glow-btn-primary"
-                style={{ width: '100%', justifyContent: 'center', padding: '0.75rem' }}
-              >
-                Launch ERP Dashboard <ArrowRight size={16} />
-              </button>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="glow-btn-secondary"
-                  style={{ width: '100%', textDecoration: 'none', textAlign: 'center', padding: '0.75rem' }}
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/signup"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="glow-btn-primary"
-                  style={{ width: '100%', textDecoration: 'none', textAlign: 'center', padding: '0.75rem' }}
-                >
-                  Employee Signup
-                </Link>
-              </>
-            )}
+          <div className="landing-mobile-actions" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <Link
+              to="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="glow-btn-secondary"
+              style={{ width: '100%', textDecoration: 'none', textAlign: 'center', padding: '0.75rem' }}
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/signup"
+              onClick={() => setMobileMenuOpen(false)}
+              className="glow-btn-secondary"
+              style={{ width: '100%', textDecoration: 'none', textAlign: 'center', padding: '0.75rem' }}
+            >
+              Employee Signup
+            </Link>
+            <button
+              onClick={() => { setMobileMenuOpen(false); navigate('/dashboard'); }}
+              className="glow-btn-primary"
+              style={{ width: '100%', justifyContent: 'center', padding: '0.75rem' }}
+            >
+              Launch ERP Dashboard <ArrowRight size={16} />
+            </button>
           </div>
         </div>
       )}
@@ -263,20 +251,15 @@ export const LandingHome = () => {
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {user ? (
-            <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}>
-              Open ERP Dashboard <ArrowRight size={18} />
-            </button>
-          ) : (
-            <>
-              <Link to="/login" className="glow-btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
-                Sign In to Platform <ArrowRight size={18} />
-              </Link>
-              <Link to="/signup" className="glow-btn-secondary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
-                Create Employee Account
-              </Link>
-            </>
-          )}
+          <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}>
+            Open ERP Dashboard <ArrowRight size={18} />
+          </button>
+          <Link to="/login" className="glow-btn-secondary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
+            Sign In
+          </Link>
+          <Link to="/signup" className="glow-btn-secondary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
+            Employee Signup
+          </Link>
         </div>
 
         {/* Hero Interactive ERP Snapshot Card */}
