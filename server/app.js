@@ -34,6 +34,15 @@ app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
+// Public health check routes (no DB connection required)
+app.get(['/api/health', '/health'], (req, res) => {
+  res.json({ status: 'ok', system: 'AssetFlow ERP API', timestamp: new Date() });
+});
+
+app.get(['/api', '/'], (req, res) => {
+  res.json({ status: 'ok', system: 'AssetFlow ERP Backend API' });
+});
+
 // Auto DB Connection & Auto Seed Middleware for serverless functions / Express
 app.use(async (req, res, next) => {
   // Fast path for preflight OPTIONS requests - ALWAYS return 204 with CORS headers
@@ -53,7 +62,7 @@ app.use(async (req, res, next) => {
   } catch (err) {
     console.error('DB Connection error in middleware:', err.message);
     res.status(500).json({
-      message: 'Database connection failed. If deploying on Vercel, please add MONGODB_URI in Vercel Environment Variables.',
+      message: 'Database connection failed. If deploying on Vercel, please check MONGODB_URI environment variable.',
       error: err.message
     });
   }
@@ -78,14 +87,6 @@ mountRoute('/audits', auditRoutes);
 mountRoute('/reports', reportRoutes);
 mountRoute('/notifications', notificationRoutes);
 mountRoute('/logs', auditLogRoutes);
-
-app.get(['/api/health', '/health'], (req, res) => {
-  res.json({ status: 'ok', system: 'AssetFlow ERP API', timestamp: new Date() });
-});
-
-app.get(['/api', '/'], (req, res) => {
-  res.json({ status: 'ok', system: 'AssetFlow ERP Backend API' });
-});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
