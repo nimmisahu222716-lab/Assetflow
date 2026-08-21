@@ -86,55 +86,21 @@ export const Sidebar = () => {
           </button>
         </div>
 
-        {/* Nav List */}
-        <nav style={{ flex: 1, padding: '1rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', overflowY: 'auto' }}>
-          {navItems.map((item) => {
-            if (item.roles && !item.roles.includes(user?.role)) {
-              return null;
-            }
-            const Icon = item.icon;
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                end={item.path === '/dashboard'}
-                onClick={closeMobileSidebar}
-                className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-                style={({ isActive }) => ({
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  padding: '0.65rem 0.85rem',
-                  borderRadius: '8px',
-                  color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-                  background: isActive ? 'rgba(56, 189, 248, 0.12)' : 'transparent',
-                  border: isActive ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid transparent',
-                  textDecoration: 'none',
-                  fontSize: '0.875rem',
-                  fontWeight: isActive ? 600 : 500,
-                  transition: 'all 0.2s'
-                })}
-              >
-                <Icon size={18} />
-                <span>{item.label}</span>
-              </NavLink>
-            );
-          })}
-        </nav>
-
-        {/* User Footer */}
+        {/* User Profile Card (Moved Upside below Brand Header) */}
         <div style={{
-          padding: '1rem 1.25rem',
-          borderTop: '1px solid var(--border-color)',
+          margin: '0.85rem 0.85rem 0.25rem 0.85rem',
+          padding: '0.75rem 0.85rem',
+          borderRadius: '10px',
+          border: '1px solid var(--border-color)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: 'rgba(0, 0, 0, 0.03)'
+          background: 'rgba(255, 255, 255, 0.03)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', overflow: 'hidden' }}>
             <div style={{
-              width: '32px',
-              height: '32px',
+              width: '34px',
+              height: '34px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
               display: 'flex',
@@ -171,6 +137,42 @@ export const Sidebar = () => {
             <LogOut size={16} />
           </button>
         </div>
+
+        {/* Nav List */}
+        <nav style={{ flex: 1, padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', overflowY: 'auto' }}>
+          {navItems.map((item) => {
+            if (item.roles && !item.roles.includes(user?.role)) {
+              return null;
+            }
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === '/dashboard'}
+                onClick={closeMobileSidebar}
+                className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+                style={({ isActive }) => ({
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '8px',
+                  color: isActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
+                  background: isActive ? 'rgba(56, 189, 248, 0.12)' : 'transparent',
+                  border: isActive ? '1px solid rgba(56, 189, 248, 0.25)' : '1px solid transparent',
+                  textDecoration: 'none',
+                  fontSize: '0.875rem',
+                  fontWeight: isActive ? 600 : 500,
+                  transition: 'all 0.2s'
+                })}
+              >
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </NavLink>
+            );
+          })}
+        </nav>
       </aside>
     </>
   );
