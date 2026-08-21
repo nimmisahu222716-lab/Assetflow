@@ -154,6 +154,7 @@ export const Signup = () => {
               <input
                 type="text"
                 required
+                autoComplete="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Alex Morgan"
@@ -172,6 +173,7 @@ export const Signup = () => {
               <input
                 type="email"
                 required
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="alex@company.com"
@@ -190,6 +192,7 @@ export const Signup = () => {
               <input
                 type="password"
                 required
+                autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Minimum 6 characters"

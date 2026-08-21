@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const User = require('../models/User');
 const { protect, generateToken } = require('../middleware/authMiddleware');
 const { logAudit } = require('../middleware/auditLogger');
@@ -12,18 +13,21 @@ router.post('/signup', async (req, res) => {
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
 
-    const userExists = await User.findOne({ email });
+    const cleanedEmail = email.toLowerCase().trim();
+    const userExists = await User.findOne({ email: cleanedEmail });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
+    const validDept = (department && mongoose.Types.ObjectId.isValid(department)) ? department : undefined;
+
     // Explicit constraint: Signup creates Employee accounts ONLY (no role selection at signup)
     const user = await User.create({
-      name,
-      email,
+      name: name.trim(),
+      email: cleanedEmail,
       password,
       role: 'Employee',
-      department: department || null
+      ...(validDept ? { department: validDept } : {})
     });
 
     await logAudit(user, 'USER_SIGNUP', 'User', user._id, `New employee signed up: ${user.email}`, req);
@@ -37,7 +41,8 @@ router.post('/signup', async (req, res) => {
       token: generateToken(user._id)
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Signup Error:', error);
+    res.status(400).json({ message: error.message || 'Signup failed' });
   }
 });
 
@@ -45,7 +50,12 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).populate('department');
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Please enter both email and password' });
+    }
+
+    const cleanedEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: cleanedEmail }).populate('department');
 
     if (user && (await user.matchPassword(password))) {
       if (user.status === 'Inactive') {
@@ -66,7 +76,8 @@ router.post('/login', async (req, res) => {
       res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Login Error:', error);
+    res.status(500).json({ message: error.message || 'Login failed' });
   }
 });
 
