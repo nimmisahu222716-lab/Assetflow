@@ -36,7 +36,7 @@ app.use(express.json());
 
 // Auto DB Connection & Auto Seed Middleware for serverless functions / Express
 app.use(async (req, res, next) => {
-  // Fast path for preflight OPTIONS requests
+  // Fast path for preflight OPTIONS requests - ALWAYS return 204 with CORS headers
   if (req.method === 'OPTIONS') {
     return res.sendStatus(204);
   }
@@ -49,10 +49,14 @@ app.use(async (req, res, next) => {
       console.log('Database empty. Running seed setup...');
       await seedDatabase();
     }
+    next();
   } catch (err) {
-    console.error('DB Connection error in middleware:', err);
+    console.error('DB Connection error in middleware:', err.message);
+    res.status(500).json({
+      message: 'Database connection failed. If deploying on Vercel, please add MONGODB_URI in Vercel Environment Variables.',
+      error: err.message
+    });
   }
-  next();
 });
 
 // Helper router mount function to handle both /api/path and /path in serverless environment
