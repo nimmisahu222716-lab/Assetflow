@@ -8,6 +8,18 @@
 
 **AssetFlow ERP** is a full-stack Enterprise Asset & Shared Resource Management System engineered with the **MERN Stack** (MongoDB, Express, React, Node.js). Designed for high-scale organizations, AssetFlow automates the lifecycle of physical equipment, shared conference spaces, lab machinery, repair workflows, and physical audit verification cycles while enforcing strict concurrency constraints.
 
+<p align="center">
+  <img src="docs/images/dashboard-preview.jpg" alt="AssetFlow ERP Dashboard Interface" width="100%" />
+</p>
+
+---
+
+## 🖼️ Application Interface & UI Showcase
+
+| Enterprise Executive Dashboard | Resource Booking & Time-Slot Scheduler |
+| :---: | :---: |
+| ![AssetFlow ERP Dashboard](docs/images/dashboard-preview.jpg) | ![AssetFlow ERP Resource Booking](docs/images/resource-booking.jpg) |
+
 ---
 
 ## 🌟 Core Business Features
