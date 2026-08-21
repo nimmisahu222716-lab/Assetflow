@@ -54,14 +54,6 @@
   --accent-amber: #d97706;
   --accent-rose: #e11d48;
 
-  --status-available: #059669;
-  --status-allocated: #2563eb;
-  --status-reserved: #7c3aed;
-  --status-maintenance: #d97706;
-  --status-lost: #dc2626;
-  --status-retired: #64748b;
-  --status-disposed: #475569;
-
   --shadow-glow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -134,10 +126,11 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
-  white-space: nowrap;
+  white-space: nowrap !important;
   max-width: 100%;
 }
 .glow-btn-primary:hover {
@@ -157,9 +150,10 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
-  white-space: nowrap;
+  white-space: nowrap !important;
   max-width: 100%;
 }
 
@@ -181,7 +175,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  white-space: nowrap;
+  white-space: nowrap !important;
   max-width: 100%;
 }
 
@@ -628,11 +622,11 @@ h1, h2, h3, h4, h5, h6 {
 
   .landing-nav-desktop,
   .landing-actions-desktop {
-    display: none;
+    display: none !important;
   }
 
   .landing-mobile-toggle {
-    display: flex;
+    display: flex !important;
   }
 
   .dashboard-header-container {
@@ -718,8 +712,7 @@ h1, h2, h3, h4, h5, h6 {
   .glow-btn-danger {
     padding: 0.55rem 0.85rem;
     font-size: 0.82rem;
-    white-space: normal !important;
-    word-break: break-word;
+    white-space: nowrap !important;
     max-width: 100%;
   }
 
