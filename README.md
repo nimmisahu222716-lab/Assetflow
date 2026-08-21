@@ -1,4 +1,4 @@
-# 📦 AssetFlow ERP - Enterprise Asset & Resource Management System
+# AssetFlow ERP - Enterprise Asset & Resource Management System
 
 [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-v18-blue.svg)](https://reactjs.org/)
@@ -14,7 +14,7 @@
 
 ---
 
-## 🖼️ Application Interface & UI Showcase
+## Application Interface & UI Showcase
 
 | Enterprise Executive Dashboard | Resource Booking & Time-Slot Scheduler |
 | :---: | :---: |
@@ -22,39 +22,39 @@
 
 ---
 
-## 🌟 Core Business Features
+## Core Business Features
 
-### 1. 🛡️ Concurrency & Double-Allocation Prevention Engine
+### 1. Concurrency & Double-Allocation Prevention Engine
 - Enforces an automated state lock before assigning equipment.
 - If an asset is already assigned (`Allocated`, `Reserved`, or `Under Maintenance`), double-allocation is blocked immediately with full context regarding the current holder.
 - Offers an automated **Transfer Request** workflow directly to the current holder or Asset Manager.
 
-### 2. 📅 Time-Slot Resource Booking Engine
+### 2. Time-Slot Resource Booking Engine
 - Book shared conference rooms, EV shuttles, and lab test devices by specific time slots.
 - **Overlap Conflict Engine**: Uses interval logic `(newStart < existingEnd AND newEnd > existingStart)` to prevent scheduling collisions.
 
-### 3. 🔧 Approval Repair & Maintenance Workflows
+### 3. Approval Repair & Maintenance Workflows
 - Employees or asset holders can raise repair requests with priority levels and issue descriptions.
 - **Automated State Flip**: Approving a repair request automatically flips the asset status to `Under Maintenance`. Upon repair completion, the asset status automatically reverts to `Available`.
 
-### 4. 📋 Physical Audit & Verification Cycles
+### 4. Physical Audit & Verification Cycles
 - Run scheduled physical inventory audit cycles scoped by Department or Location.
 - Auditors flag items as **Verified**, **Missing**, or **Damaged**, generating real-time discrepancy reports.
 - **Lock Cycle Operation**: Locking an audit cycle finalizes the report and automatically transitions missing items to `Lost` status across the ERP directory.
 
-### 5. 👥 Role-Based Access Control (RBAC)
+### 5. Role-Based Access Control (RBAC)
 - **Super Admin**: Department & Category master setup, role promotions, system logs.
 - **Asset Manager**: Asset registration, allocation/return processing, transfer approval, maintenance resolution.
 - **Department Head**: Department allocation overview, intra-department transfer approvals, shared resource bookings.
 - **Employee**: View personal items, book shared resources, request asset repairs and transfers.
 
-### 📱 Responsive Touch-Optimized UI
+### Responsive Touch-Optimized UI
 - Fully responsive across all display breakpoints (Mobile 320px–480px, Tablet 768px, Laptop/Desktop 1024px+).
 - Features off-canvas slide-over navigation drawers, touch-scrollable data tables, and dynamic form grids.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Node.js**: `v18.0.0` or higher
@@ -83,7 +83,7 @@
 
 ---
 
-## 🔑 Pre-Seeded Demo Accounts
+## Pre-Seeded Demo Accounts
 
 The database comes pre-seeded with sample enterprise data and ready-to-use user accounts:
 
@@ -96,7 +96,7 @@ The database comes pre-seeded with sample enterprise data and ready-to-use user 
 
 ---
 
-## 🧪 Integration Test Suite
+## Integration Test Suite
 
 Verify all 7 core backend business rules by running the integration test runner:
 
@@ -109,20 +109,20 @@ node test-api.js
 ```text
 === RUNNING ASSETFLOW ERP BACKEND INTEGRATION TESTS ===
 
-1. Admin Login: PASS ✅ Admin
-2. Asset Directory Listing: PASS ✅ Total Assets: 6
-3. Double-Allocation Prevention Engine: PASS ✅
-4. Time-Slot Overlap Validation Engine: PASS ✅
-5. Contiguous Non-Overlapping Booking: PASS ✅
-6. Maintenance Approval Asset Status Transition (Under Maintenance): PASS ✅
-7. Maintenance Resolution Asset Status Transition (Available): PASS ✅
+1. Admin Login: PASS Admin
+2. Asset Directory Listing: PASS Total Assets: 6
+3. Double-Allocation Prevention Engine: PASS
+4. Time-Slot Overlap Validation Engine: PASS
+5. Contiguous Non-Overlapping Booking: PASS
+6. Maintenance Approval Asset Status Transition (Under Maintenance): PASS
+7. Maintenance Resolution Asset Status Transition (Available): PASS
 
 === ALL ENTERPRISE BACKEND BUSINESS RULES VERIFIED SUCCESSFULLY ===
 ```
 
 ---
 
-## 🔒 Security & Hardening Checklist
+## Security & Hardening Checklist
 
 - **Secrets Isolation**: Environment variables managed via `.env` (excluded from git tracking).
 - **Authentication**: JWT tokens with 30-day expiration and bcrypt password hashing.
@@ -131,6 +131,6 @@ node test-api.js
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
