@@ -22,7 +22,6 @@ export const Sidebar = () => {
   const { isMobileOpen, closeMobileSidebar } = useSidebar();
 
   const navItems = [
-    { path: '/', label: 'Home Landing Page', icon: Boxes },
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/dashboard/org-setup', label: 'Organization Setup', icon: Building2, roles: ['Admin'] },
     { path: '/dashboard/assets', label: 'Asset Directory', icon: Package },
