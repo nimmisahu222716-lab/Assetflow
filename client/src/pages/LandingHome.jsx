@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import {
   Boxes,
@@ -15,16 +14,13 @@ import {
   Moon,
   Sparkles,
   GitPullRequest,
-  CheckCircle2,
   FileCheck,
   Menu,
   X
 } from 'lucide-react';
 
 export const LandingHome = () => {
-  const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
@@ -102,17 +98,14 @@ export const LandingHome = () => {
           </nav>
         </div>
 
-        {/* RIGHT CORNER: Desktop Action Links (Sign In, Sign Up, Launch Dashboard) & Dark/Light Mode */}
+        {/* RIGHT CORNER: Desktop Action Links (Sign In, Employee Signup) & Dark/Light Mode */}
         <div className="landing-actions-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
           <Link to="/login" className="glow-btn-secondary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
             Sign In
           </Link>
-          <Link to="/signup" className="glow-btn-secondary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
-            Sign Up
+          <Link to="/signup" className="glow-btn-primary" style={{ fontSize: '0.85rem', textDecoration: 'none', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
+            Employee Signup
           </Link>
-          <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ fontSize: '0.85rem', padding: '0.55rem 1.15rem', whiteSpace: 'nowrap' }}>
-            Launch ERP Dashboard <ArrowRight size={16} />
-          </button>
 
           {/* Dark/Light Mode Button */}
           <button
@@ -196,18 +189,11 @@ export const LandingHome = () => {
             <Link
               to="/signup"
               onClick={() => setMobileMenuOpen(false)}
-              className="glow-btn-secondary"
+              className="glow-btn-primary"
               style={{ width: '100%', textDecoration: 'none', textAlign: 'center', padding: '0.75rem' }}
             >
               Employee Signup
             </Link>
-            <button
-              onClick={() => { setMobileMenuOpen(false); navigate('/dashboard'); }}
-              className="glow-btn-primary"
-              style={{ width: '100%', justifyContent: 'center', padding: '0.75rem' }}
-            >
-              Launch ERP Dashboard <ArrowRight size={16} />
-            </button>
           </div>
         </div>
       )}
@@ -251,14 +237,11 @@ export const LandingHome = () => {
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button onClick={() => navigate('/dashboard')} className="glow-btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}>
-            Open ERP Dashboard <ArrowRight size={18} />
-          </button>
-          <Link to="/login" className="glow-btn-secondary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
-            Sign In
+          <Link to="/login" className="glow-btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
+            Sign In to Platform <ArrowRight size={18} />
           </Link>
           <Link to="/signup" className="glow-btn-secondary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', textDecoration: 'none' }}>
-            Employee Signup
+            Create Employee Account
           </Link>
         </div>
 
