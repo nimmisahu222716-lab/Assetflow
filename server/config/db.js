@@ -4,6 +4,10 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 let mongoServer;
 
 const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) {
+    return mongoose.connection;
+  }
+
   try {
     let mongoUri = process.env.MONGODB_URI ? process.env.MONGODB_URI.trim() : '';
 

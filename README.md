@@ -83,6 +83,37 @@
 
 ---
 
+## Deployment Guide
+
+### Deploying on Vercel (Full-Stack Frontend + Backend Serverless)
+
+The project includes pre-configured [`vercel.json`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/vercel.json) and [`api/index.js`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/api/index.js) files for instant Vercel deployment.
+
+1. **Import Repository to Vercel**:
+   - Go to [Vercel Dashboard](https://vercel.com/new) and import `nimmisahu222716-lab/Assetflow`.
+2. **Framework Preset**: Select **Other** or **Vite**.
+3. **Environment Variables** (Optional):
+   - `MONGODB_URI`: Your MongoDB Atlas connection string (if left blank, boots isolated in-memory DB).
+   - `JWT_SECRET`: Custom secret key for authentication.
+4. **Click Deploy**: Vercel automatically builds the React SPA frontend and provisions the Express API as Serverless Functions (`/api/*`).
+
+---
+
+### Deploying on Netlify
+
+The repository includes a pre-configured [`netlify.toml`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/netlify.toml) for deploying the React client SPA on Netlify.
+
+1. **Import Repository to Netlify**:
+   - Go to [Netlify Dashboard](https://app.netlify.com/start) and select your GitHub repository.
+2. **Build Settings**:
+   - **Build Command**: `cd client && npm install && npm run build`
+   - **Publish Directory**: `client/dist`
+3. **Environment Variables**:
+   - `VITE_API_URL`: Set to your deployed Express backend URL (e.g. `https://your-app.vercel.app/api`).
+4. **Click Deploy Site**.
+
+---
+
 ## Pre-Seeded Demo Accounts
 
 The database comes pre-seeded with sample enterprise data and ready-to-use user accounts:
