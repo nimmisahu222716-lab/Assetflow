@@ -25,7 +25,7 @@ export const MaintenanceManagement = () => {
 
   const [showResolveModal, setShowResolveModal] = useState(false);
   const [selectedMaint, setSelectedMaint] = useState(null);
-  const [resolveForm, setResolveForm] = useState({ resolutionNotes: '', cost: 0 });
+  const [resolveForm, setResolveForm] = useState({ resolutionNotes: '', cost: '' });
 
   const loadData = async () => {
     try {
@@ -83,7 +83,10 @@ export const MaintenanceManagement = () => {
     try {
       await fetchAPI(`/maintenance/${selectedMaint._id}/resolve`, {
         method: 'PUT',
-        body: JSON.stringify(resolveForm)
+        body: JSON.stringify({
+          ...resolveForm,
+          cost: resolveForm.cost !== '' ? Number(resolveForm.cost) : 0
+        })
       });
       setShowResolveModal(false);
       loadData();
@@ -180,7 +183,7 @@ export const MaintenanceManagement = () => {
                       {/* Resolution Action */}
                       {(req.status === 'Approved' || req.status === 'In Progress') && (user?.role === 'Admin' || user?.role === 'Asset Manager') && (
                         <button
-                          onClick={() => { setSelectedMaint(req); setShowResolveModal(true); }}
+                          onClick={() => { setSelectedMaint(req); setResolveForm({ resolutionNotes: '', cost: '' }); setShowResolveModal(true); }}
                           style={{ background: 'rgba(56,189,248,0.15)', border: '1px solid rgba(56,189,248,0.3)', color: '#38bdf8', padding: '0.25rem 0.6rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
                         >
                           Resolve & Revert to Available
@@ -234,7 +237,7 @@ export const MaintenanceManagement = () => {
         <form onSubmit={handleResolveSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div>
             <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.3rem' }}>Repair Cost ($)</label>
-            <input type="number" className="input-field" value={resolveForm.cost} onChange={e => setResolveForm({ ...resolveForm, cost: Number(e.target.value) })} />
+            <input type="number" min="0" step="any" className="input-field" value={resolveForm.cost} onChange={e => setResolveForm({ ...resolveForm, cost: e.target.value })} placeholder="Enter cost..." />
           </div>
 
           <div>
