@@ -18,6 +18,62 @@
       "destination": "/api/index.js"
     },
     {
+      "source": "/auth/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/departments/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/categories/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/users/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/allocations/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/transfers/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/bookings/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/maintenance/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/audits/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/reports/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/notifications/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/logs/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/index.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
