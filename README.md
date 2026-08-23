@@ -1,167 +1,265 @@
-# AssetFlow ERP - Enterprise Asset & Resource Management System
+# AssetFlow ERP – Enterprise Asset & Resource Management System
 
-[![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-v18-blue.svg)](https://reactjs.org/)
-[![Express](https://img.shields.io/badge/Express-v4.19-lightgrey.svg)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen.svg)](https://www.mongodb.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://assetflow-erp.netlify.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black)](https://github.com/nimmisahu222716-lab/Assetflow)
+[![React](https://img.shields.io/badge/React-18-blue)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.19-lightgrey)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)](https://www.mongodb.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-**AssetFlow ERP** is a full-stack Enterprise Asset & Shared Resource Management System engineered with the **MERN Stack** (MongoDB, Express, React, Node.js). Designed for high-scale organizations, AssetFlow automates the lifecycle of physical equipment, shared conference spaces, lab machinery, repair workflows, and physical audit verification cycles while enforcing strict concurrency constraints.
+**AssetFlow ERP** is a full-stack **Enterprise Asset & Resource Management System** built using the MERN stack. It helps organizations manage assets, employees, departments, shared resources, maintenance, transfers, audits, notifications, and operational analytics through secure role-based workflows.
+
+##  Project Links
+
+ **Live Demo:** https://assetflow-erp.netlify.app
+
+ **GitHub Repository:** https://github.com/nimmisahu222716-lab/Assetflow
+
+---
+
+##  Key Features
+
+-  **Authentication & Role-Based Access Control** – Secure JWT authentication with Admin, Asset Manager, Department Head, and Employee roles.
+-  **Asset Management** – Register, search, filter, allocate, transfer, return, and track assets throughout their lifecycle.
+-  **Double-Allocation Prevention** – Prevents an already allocated asset from being assigned to another user and provides a transfer request workflow.
+-  **Resource Booking** – Book shared resources using time slots with automatic overlap validation.
+-  **Maintenance Management** – Raise, approve, assign, track, and resolve maintenance requests with automatic asset status updates.
+-  **Asset Audits** – Create audit cycles, assign auditors, verify assets, and generate discrepancy reports.
+-  **Reports & Analytics** – Monitor asset utilization, maintenance activity, department allocations, and resource usage.
+-  **Notifications & Activity Logs** – Track overdue returns, bookings, transfers, maintenance events, audit discrepancies, and user actions.
+-  **Responsive UI** – Optimized for desktop, tablet, and mobile devices.
+
+---
+
+##  User Roles
+
+| Role | Main Capabilities |
+| :--- | :--- |
+| **Admin** | Organization setup, employee & role management, audit cycles, analytics |
+| **Asset Manager** | Asset registration, allocation, transfers, maintenance |
+| **Department Head** | Department assets, approvals, resource booking |
+| **Employee** | Assigned assets, resource booking, maintenance & transfer requests |
+
+---
+
+##  Demo Accounts
+
+Use these accounts to explore different role-based workflows in the live application.
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@assetflow.com` | `Admin123!` |
+| **Asset Manager** | `manager@assetflow.com` | `Manager123!` |
+| **Department Head** | `depthead@assetflow.com` | `Head123!` |
+| **Employee** | `employee@assetflow.com` | `Emp123!` |
+
+> **Tip:** Try logging in with different accounts to explore role-specific dashboards, permissions, and workflows.
+
+---
+
+##  Application Showcase
+
+###  Home
 
 <p align="center">
-  <img src="docs/images/dashboard-preview.jpg" alt="AssetFlow ERP Dashboard Interface" width="100%" />
+  <img src="docs/images/home1.png" alt="AssetFlow Home Page" width="100%">
+</p>
+
+###  Login
+
+<p align="center">
+  <img src="docs/images/login.png" alt="AssetFlow Login" width="100%">
+</p>
+
+###  Signup
+
+<p align="center">
+  <img src="docs/images/signup.png" alt="AssetFlow Signup" width="100%">
+</p>
+
+###  Dashboard
+
+<p align="center">
+  <img src="docs/images/dashboard.png" alt="AssetFlow Dashboard" width="100%">
+</p>
+
+###  Asset Directory
+
+<p align="center">
+  <img src="docs/images/asset-directory.png" alt="Asset Directory" width="100%">
+</p>
+
+###  Allocations & Transfers
+
+<p align="center">
+  <img src="docs/images/allocations-transfers.png" alt="Asset Allocations and Transfers" width="100%">
+</p>
+
+###  Resource Booking
+
+<p align="center">
+  <img src="docs/images/resource-booking.png" alt="Resource Booking" width="100%">
+</p>
+
+###  Maintenance Management
+
+<p align="center">
+  <img src="docs/images/maintenance-management.png" alt="Maintenance Management" width="100%">
+</p>
+
+###  Asset Audit
+
+<p align="center">
+  <img src="docs/images/asset-audit.png" alt="Asset Audit Cycle" width="100%">
+</p>
+
+###  Reports & Analytics
+
+<p align="center">
+  <img src="docs/images/reports-analytics.png" alt="Reports and Analytics" width="100%">
+</p>
+
+###  Activity Logs & Alerts
+
+<p align="center">
+  <img src="docs/images/activity-logs-alerts.png" alt="Activity Logs and Alerts" width="100%">
 </p>
 
 ---
 
-## Application Interface & UI Showcase
+##  Core Business Logic
 
-| Enterprise Executive Dashboard | Resource Booking & Time-Slot Scheduler |
-| :---: | :---: |
-| ![AssetFlow ERP Dashboard](docs/images/dashboard-preview.jpg) | ![AssetFlow ERP Resource Booking](docs/images/resource-booking.jpg) |
+### Asset Allocation
+
+Prevents double allocation of an asset that is already allocated, reserved, or under maintenance.
+
+```text
+Asset Allocation
+       ↓
+Conflict Check
+       ↓
+Allocated / Transfer Request
+
+### Resource Booking
+
+Prevents overlapping bookings for the same shared resource using time-slot validation.
+
+```text
+Booking Request
+       ↓
+Time-Slot Validation
+       ↓
+Confirmed / Rejected
+```
+
+### Maintenance Workflow
+
+Asset status automatically changes throughout the maintenance process.
+
+```text
+Pending
+   ↓
+Approved
+   ↓
+Under Maintenance
+   ↓
+Resolved
+   ↓
+Available
+```
+
+### Asset Lifecycle
+
+```text
+Available ↔ Allocated
+      ↓
+   Reserved
+      ↓
+Under Maintenance
+      ↓
+   Available
+
+Other states:
+Lost | Retired | Disposed
+```
 
 ---
 
-## Core Business Features
+##  Architecture
 
-### 1. Concurrency & Double-Allocation Prevention Engine
-- Enforces an automated state lock before assigning equipment.
-- If an asset is already assigned (`Allocated`, `Reserved`, or `Under Maintenance`), double-allocation is blocked immediately with full context regarding the current holder.
-- Offers an automated **Transfer Request** workflow directly to the current holder or Asset Manager.
-
-### 2. Time-Slot Resource Booking Engine
-- Book shared conference rooms, EV shuttles, and lab test devices by specific time slots.
-- **Overlap Conflict Engine**: Uses interval logic `(newStart < existingEnd AND newEnd > existingStart)` to prevent scheduling collisions.
-
-### 3. Approval Repair & Maintenance Workflows
-- Employees or asset holders can raise repair requests with priority levels and issue descriptions.
-- **Automated State Flip**: Approving a repair request automatically flips the asset status to `Under Maintenance`. Upon repair completion, the asset status automatically reverts to `Available`.
-
-### 4. Physical Audit & Verification Cycles
-- Run scheduled physical inventory audit cycles scoped by Department or Location.
-- Auditors flag items as **Verified**, **Missing**, or **Damaged**, generating real-time discrepancy reports.
-- **Lock Cycle Operation**: Locking an audit cycle finalizes the report and automatically transitions missing items to `Lost` status across the ERP directory.
-
-### 5. Role-Based Access Control (RBAC)
-- **Super Admin**: Department & Category master setup, role promotions, system logs.
-- **Asset Manager**: Asset registration, allocation/return processing, transfer approval, maintenance resolution.
-- **Department Head**: Department allocation overview, intra-department transfer approvals, shared resource bookings.
-- **Employee**: View personal items, book shared resources, request asset repairs and transfers.
-
-### Responsive Touch-Optimized UI
-- Fully responsive across all display breakpoints (Mobile 320px–480px, Tablet 768px, Laptop/Desktop 1024px+).
-- Features off-canvas slide-over navigation drawers, touch-scrollable data tables, and dynamic form grids.
+```text
+React + Vite
+     ↓
+REST APIs
+     ↓
+Node.js + Express
+     ↓
+MongoDB + Mongoose
+```
 
 ---
 
-## Getting Started
+##  Tech Stack
+
+**Frontend:** React.js, Vite, JavaScript, HTML5, CSS3  
+**Backend:** Node.js, Express.js, REST APIs  
+**Database:** MongoDB, Mongoose  
+**Authentication:** JWT, bcrypt  
+**Tools:** Git, GitHub, npm  
+**Deployment:** Netlify + Render
+
+---
+
+##  Getting Started
 
 ### Prerequisites
-- **Node.js**: `v18.0.0` or higher
-- **npm**: `v9.0.0` or higher
+
+- Node.js 18+
+- npm 9+
+- MongoDB / MongoDB Atlas
 
 ### Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/nimmisahu222716-lab/Assetflow.git
-   cd Assetflow
-   ```
+```bash
+git clone https://github.com/nimmisahu222716-lab/Assetflow.git
+cd Assetflow
 
-2. **Install Root, Server, and Client Dependencies**:
-   ```bash
-   npm install
-   npm run install-all
-   ```
+npm install
+npm run install-all
+```
 
-3. **Start Development Application**:
-   ```bash
-   npm run dev
-   ```
-   - **Frontend App**: `http://localhost:3000`
-   - **Backend Express API**: `http://localhost:5000/api`
-
----
-
-## Deployment Guide
-
-### Deploying on Vercel (Full-Stack Frontend + Backend Serverless)
-
-The project includes pre-configured [`vercel.json`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/vercel.json) and [`api/index.js`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/api/index.js) files for instant Vercel deployment.
-
-1. **Import Repository to Vercel**:
-   - Go to [Vercel Dashboard](https://vercel.com/new) and import `nimmisahu222716-lab/Assetflow`.
-2. **Framework Preset**: Select **Other** or **Vite**.
-3. **Environment Variables** (Optional):
-   - `MONGODB_URI`: Your MongoDB Atlas connection string (if left blank, boots isolated in-memory DB).
-   - `JWT_SECRET`: Custom secret key for authentication.
-4. **Click Deploy**: Vercel automatically builds the React SPA frontend and provisions the Express API as Serverless Functions (`/api/*`).
-
----
-
-### Deploying on Netlify
-
-The repository includes a pre-configured [`netlify.toml`](file:///c:/Users/NIMMI%20SAHU/Downloads/AssetFlow-ERP-main/AssetFlow-ERP-main/netlify.toml) for deploying the React client SPA on Netlify.
-
-1. **Import Repository to Netlify**:
-   - Go to [Netlify Dashboard](https://app.netlify.com/start) and select your GitHub repository.
-2. **Build Settings**:
-   - **Build Command**: `cd client && npm install && npm run build`
-   - **Publish Directory**: `client/dist`
-3. **Environment Variables**:
-   - `VITE_API_URL`: Set to your deployed Express backend URL (e.g. `https://your-app.vercel.app/api`).
-4. **Click Deploy Site**.
-
----
-
-## Pre-Seeded Demo Accounts
-
-The database comes pre-seeded with sample enterprise data and ready-to-use user accounts:
-
-| Role | Email | Password | Access Rights |
-| :--- | :--- | :--- | :--- |
-| **System Admin** | `admin@assetflow.com` | `Admin123!` | Full System Master Access |
-| **Asset Manager** | `manager@assetflow.com` | `Manager123!` | Inventory, Allocations & Maintenance |
-| **Department Head** | `depthead@assetflow.com` | `Head123!` | Department Oversight & Resource Booking |
-| **Employee** | `employee@assetflow.com` | `Emp123!` | Personal Dashboard & Repair Requests |
-
----
-
-## Integration Test Suite
-
-Verify all 7 core backend business rules by running the integration test runner:
+### Start the Backend
 
 ```bash
 cd server
-node test-api.js
+npm start
 ```
 
-### Test Output Verification:
-```text
-=== RUNNING ASSETFLOW ERP BACKEND INTEGRATION TESTS ===
+### Start the Frontend
 
-1. Admin Login: PASS Admin
-2. Asset Directory Listing: PASS Total Assets: 6
-3. Double-Allocation Prevention Engine: PASS
-4. Time-Slot Overlap Validation Engine: PASS
-5. Contiguous Non-Overlapping Booking: PASS
-6. Maintenance Approval Asset Status Transition (Under Maintenance): PASS
-7. Maintenance Resolution Asset Status Transition (Available): PASS
+Open a new terminal:
 
-=== ALL ENTERPRISE BACKEND BUSINESS RULES VERIFIED SUCCESSFULLY ===
+```bash
+cd client
+npm run dev
 ```
+
+Create the required environment variables in `.env` before running the application.
 
 ---
 
-## Security & Hardening Checklist
+##  About the Author
 
-- **Secrets Isolation**: Environment variables managed via `.env` (excluded from git tracking).
-- **Authentication**: JWT tokens with 30-day expiration and bcrypt password hashing.
-- **DB Protection**: Mongoose ODM with MongoDB Memory Server fallback for isolated testing.
-- **Audit Logging**: Comprehensive transactional audit logging for all creation, transfer, maintenance, and role actions.
+**Nimmi Sahu**  
+MCA Student | Full-Stack Developer
+
+I am an MCA student at **Jawaharlal Nehru University (JNU), New Delhi**, with a strong interest in full-stack web development and software engineering. I enjoy building practical applications using the **MERN stack** and solving real-world problems through technology.
+
+###  Connect With Me
+
+-  **LinkedIn:** [Nimmi Sahu](https://www.linkedin.com/in/nimmi-sahu-511b77324)
+-  **GitHub:** [nimmisahu222716-lab](https://github.com/nimmisahu222716-lab)
+-  **AssetFlow Live Demo:** [assetflow-erp.netlify.app](https://assetflow-erp.netlify.app)
 
 ---
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
